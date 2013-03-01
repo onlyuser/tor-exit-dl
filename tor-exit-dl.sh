@@ -34,8 +34,8 @@ echo "Extracting router list from.. ==> $URL"
 EXIT_NODES=`curl $URL                                                 | # download Tor routers CSV using curl
         grep \,$COUNTRY_CODE\,                                        | # filter by country (default: US)
         sort -t "," -k$BANDWIDTH_COL -g -r                            | # sort by bandwidth column (order descending)
-        cut -d"," -f$ROUTER_COL,$COUNTRY_COL,$BANDWIDTH_COL,$EXIT_COL | # keep these fields (preserve field order)
-        grep -v ".\+,.\+,.\+,0$"`                                       # keep non-exits
+        cut -d"," -f$ROUTER_COL,$COUNTRY_COL,$BANDWIDTH_COL,$EXIT_COL | # include fields (preserve order)
+        grep -v ".\+,.\+,.\+,0$"`                                       # exclude non-exits
 if [ "$TOP_N" == "" ]; then
     TOP_N=`echo "$EXIT_NODES" | wc -l` # grab all routers if top-n not specified
 fi
