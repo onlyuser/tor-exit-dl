@@ -14,6 +14,7 @@ Requirements:
 * bash
 * curl
 * tor
+* http://torstatus.blutmagie.de/query_export.php/Tor_query_EXPORT.csv
 
 Installation (Debian):
 ----------------------
