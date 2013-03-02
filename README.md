@@ -24,7 +24,7 @@ Installation (Debian):
 Usage:
 ------
 
-1. Issue command "tor-exit-dl 5 US" into a bash terminal.
+1. Issue command "tor-exit-dl &lt;TOP_N&gt; [COUNTRY_CODE={US}]" into a bash terminal.
 2. sudo vi /etc/tor/torrc
 3. Append router names to the line that begins with "exitnodes" in file "torrc"
 4. sudo /etc/init.d/tor restart
