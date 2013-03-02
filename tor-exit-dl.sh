@@ -4,17 +4,17 @@ CMD=`basename $0`
 
 show_help()
 {
-    echo "Usage: $CMD [COUNTRY_CODE [TOP_N]]"
+    echo "Usage: $CMD <TOP_N> [COUNTRY_CODE={US}]"
 }
 
-if [ $# -ne 0 ] && [ $# -ne 1 ] && [ $# -ne 2 ]; then
-    echo "fail! -- expect 0, 1 or 2 arguments! ==> $@"
+if [ $# -ne 1 ] && [ $# -ne 2 ]; then
+    echo "fail! -- expect 1 or 2 arguments! ==> $@"
     show_help
     exit 1
 fi
 
-COUNTRY_CODE=$1
-TOP_N=$2
+TOP_N=$1
+COUNTRY_CODE=$2
 
 if [ "$COUNTRY_CODE" == "" ]; then
     COUNTRY_CODE=US
@@ -35,11 +35,8 @@ EXIT_NODES=`curl $URL                                                 | # downlo
         grep \,$COUNTRY_CODE\,                                        | # filter by country (default: US)
         sort -t "," -k$BANDWIDTH_COL -g -r                            | # sort by bandwidth column (order descending)
         cut -d"," -f$ROUTER_COL,$COUNTRY_COL,$BANDWIDTH_COL,$EXIT_COL | # include fields (preserve order)
-        grep -v ".\+,.\+,.\+,0$"`                                       # exclude non-exits
-if [ "$TOP_N" == "" ]; then
-    TOP_N=`echo "$EXIT_NODES" | wc -l` # grab all routers if top-n not specified
-fi
-EXIT_NODES=`echo "$EXIT_NODES" | head -$TOP_N`
+        grep -v ".\+,.\+,.\+,0$"                                      | # exclude non-exits
+        head -$TOP_N`
 
 if [ "$EXIT_NODES" == "" ]; then
     echo ""
@@ -49,7 +46,7 @@ if [ "$EXIT_NODES" == "" ]; then
 fi
 
 echo ""
-echo "Search results for COUNTRY_CODE=$COUNTRY_CODE, TOP_N=$TOP_N:"
+echo "Search results for TOP_N=$TOP_N, COUNTRY_CODE=$COUNTRY_CODE:"
 echo "Format: [Router Name, Country Code, Bandwidth, Flag - Exit]"
 echo "$EXIT_NODES"
 
