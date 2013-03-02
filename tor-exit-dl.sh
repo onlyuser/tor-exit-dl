@@ -41,7 +41,7 @@ EXIT_NODES=`curl $URL                                                 | # downlo
 if [ "$EXIT_NODES" == "" ]; then
     echo ""
     echo "No routers matching search criteria found!"
-    echo "You searched for COUNTRY_CODE=$COUNTRY_CODE, TOP_N=$TOP_N."
+    echo "You searched for TOP_N=$TOP_N, COUNTRY_CODE=$COUNTRY_CODE."
     exit 1
 fi
 
