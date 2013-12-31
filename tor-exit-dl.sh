@@ -30,8 +30,16 @@ BANDWIDTH_COL=3
 EXIT_COL=10
 
 echo ""
-echo "Extracting router list from.. ==> $URL"
-EXIT_NODES=`curl $URL                                                 | # download Tor routers CSV using curl
+CACHED_ROUTERS="./cached_routers/`basename $URL`.`date +%Y-%m-%d`"
+if [ ! -f $CACHED_ROUTERS ]; then
+    echo "Downloading router list from.. ==> $URL"
+    echo "Saving router list to.. ==> $CACHED_ROUTERS"
+    mkdir -p `dirname $CACHED_ROUTERS`
+    curl $URL > $CACHED_ROUTERS
+else
+    echo "Using cached router list from.. ==> $CACHED_ROUTERS"
+fi
+EXIT_NODES=`cat $CACHED_ROUTERS                                           | # download Tor routers CSV using curl
         grep \,$COUNTRY_CODE\,                                        | # filter by country (default: US)
         sort -t "," -k$BANDWIDTH_COL -g -r                            | # sort by bandwidth column (order descending)
         cut -d"," -f$ROUTER_COL,$COUNTRY_COL,$BANDWIDTH_COL,$EXIT_COL | # include fields (preserve order)
@@ -53,8 +61,8 @@ echo "$EXIT_NODES"
 ROUTER_NAMES=`echo "$EXIT_NODES" | cut -d"," -f1 | tr "\n" ,`
 
 echo ""
-echo "Only router names:"
-echo "$ROUTER_NAMES"
+echo "New Exitnodes Line:"
+echo "exitnodes $ROUTER_NAMES"
 
 echo ""
 echo "To update Tor exit nodes:"
