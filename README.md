@@ -6,7 +6,7 @@ Copyright (C) 2011-2013 Jerry Chen <mailto:onlyuser@gmail.com>
 About:
 ------
 
-tor-exit-dl is a bash script for finding Tor exit nodes.
+tor-exit-dl is a script to find Tor exit nodes.
 
 Requirements:
 -------------
