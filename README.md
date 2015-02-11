@@ -1,7 +1,7 @@
 tor-exit-dl
 ===========
 
-Copyright (C) 2011-2013 Jerry Chen <mailto:onlyuser@gmail.com>
+Copyright (C) 2011-2015 Jerry Chen <mailto:onlyuser@gmail.com>
 
 About:
 ------
@@ -29,6 +29,14 @@ Usage:
 2. sudo vi /etc/tor/torrc
 3. Append router names to the line that begins with "exitnodes" in file "torrc".
 4. sudo /etc/init.d/tor restart
+
+References
+----------
+
+<dl>
+    <dt>"Tor Network Status"</dt>
+    <dd>http://torstatus.blutmagie.de/</dd>
+</dl>
 
 Keywords:
 ---------
