@@ -11,10 +11,7 @@ tor-exit-dl is a script to find Tor exit nodes.
 Requirements:
 -------------
 
-* bash
-* curl
-* tor
-* http://torstatus.blutmagie.de
+    bash curl tor http://torstatus.blutmagie.de
 
 Installation (Debian):
 ----------------------
