@@ -3,24 +3,24 @@ tor-exit-dl
 
 Copyright (C) 2011-2017 <mailto:onlyuser@gmail.com>
 
-About:
-------
+About
+-----
 
 tor-exit-dl is a script to find Tor exit nodes.
 
-Requirements:
--------------
+Requirements
+------------
 
     bash curl tor http://torstatus.blutmagie.de
 
-Installation (Debian):
-----------------------
+Installation (Debian)
+---------------------
 
 1. git clone https://github.com/onlyuser/tor-exit-dl.git
 2. sudo aptitude install curl
 
-Usage:
-------
+Usage
+-----
 
 1. Issue command "tor-exit-dl &lt;TOP_N&gt; [COUNTRY_CODE={US}]" into a bash terminal (not including brackets).
 2. sudo vi /etc/tor/torrc
@@ -35,7 +35,7 @@ References
     <dd>http://torstatus.blutmagie.de/</dd>
 </dl>
 
-Keywords:
----------
+Keywords
+--------
 
     tor, exitnodes, bash, Linux
